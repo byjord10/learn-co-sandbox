@@ -1,2 +1,3 @@
 require_relative  "./apple_deals/version"
-require_relative  './apple_deals/cli'
+
+require_relative  './cli'
