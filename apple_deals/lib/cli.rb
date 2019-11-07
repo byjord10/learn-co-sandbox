@@ -7,7 +7,11 @@ class AppleDeals::CLI
   end 
   
   def deal_list 
-    @deal = AppleDeals::Deals.today 
+    puts "Hello, here is a list of Apple products on sale this week."
+    @deals = AppleDeals::Deals.today 
+    @deals.each.with_index(1) do |deal, i|
+      pts "#{i}.#{deal}"
+    end
   end 
   
   def deal_selection
@@ -15,24 +19,20 @@ class AppleDeals::CLI
     while input != "exit"
     puts "Enter the number of the deal for more info"
     input = gets.strip.downcase
-    case input 
-    when "1"
-      puts "Deal #1"
-    when "2"
-      puts "Deal #2"
-    when "3"
-      puts "Deal #3"
-    when "4"
-      puts "Deal #4"
-    when "exit"
-      puts "If you ever change your mind, text Apple Deals."
     
+    if input.to_i > 0
+      puts @deals[input.to_i-1]
+    elsif input == "Apple Deals"
+        deal_list 
+    else 
+      puts "If you would like to skip this week, type exit."
     end
   end
-end
+end 
  
   def goodbye
     puts "Goodbye! "
+    puts "We'll be back with weekly Apple Deals!"
   end 
   
 end 
